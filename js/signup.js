@@ -19,9 +19,12 @@ function signUp() {
     })
     .catch((err) => {
       const warning = document.getElementById("warning");
-      const errorMessage = err.response && err.response.data ? err.response.data.message : "Signup failed. Try again!";
-      warning.textContent = errorMessage;      
+      console.log("Error details:", err); // Debugging log
+      const errorMessage = err.response?.data?.message || "Server unreachable. Please try again later!";
+      warning.textContent = errorMessage;
+      warning.style.display = "block";
     });
+    
 }
 
 document.getElementById("submit").addEventListener("click", (e) => {
