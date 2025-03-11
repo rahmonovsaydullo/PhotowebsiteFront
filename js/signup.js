@@ -3,13 +3,27 @@ function signUp() {
   const lastname = document.getElementById("lastname");
   const username = document.getElementById("username");
   const password = document.getElementById("password");
+  const warning = document.getElementById("warning");
 
+  // ✅ Validate inputs before making a request
+  if (!firstname.value || !lastname.value || !username.value || !password.value.trim()) {
+    alert("All fields are required!");
+    return;
+  }
+
+  const passwordValue = password.value.trim();
+  if (passwordValue.length < 6) {
+    alert("Password must be at least 6 characters long!");
+    return;
+  }
+
+  // ✅ Send signup request
   axios
     .post("https://photowebsite-9elu.onrender.com/signup", { 
-      first_name: firstname.value,
-      last_name: lastname.value,
-      user_name: username.value,
-      password: password.value,
+      first_name: firstname.value.trim(),
+      last_name: lastname.value.trim(),
+      user_name: username.value.trim(),
+      password: passwordValue,
     })
     .then((res) => {
       console.log(res);
@@ -18,15 +32,14 @@ function signUp() {
       }
     })
     .catch((err) => {
-      const warning = document.getElementById("warning");
-      console.log("Error details:", err); 
-      const errorMessage = err.response?.data?.message || "Server unreachable. Please try again later!";
+      console.log("Error details:", err);
+      const errorMessage = err.response?.data?.message || "An error occurred. Please try again!";
       warning.textContent = errorMessage;
       warning.style.display = "block";
     });
-    
 }
 
+// ✅ Attach event listener
 document.getElementById("submit").addEventListener("click", (e) => {
   e.preventDefault();
   signUp();
