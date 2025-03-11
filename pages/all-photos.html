@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>All photos</title>
+	<script src="../js/allPhotos.js" defer></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"> -->
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+		:root {
+			--background-color: #bfc1c3;
+			--text-color: #FFFFFF;
+			--card-color: #274C77;
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: 'Poppins', sans-serif;
+			background: var(--background-color);
+			color: var(--text-color);
+			line-height: 1.6;
+			overflow-x: hidden;
+		}
+
+		header {
+			background-color: #274C77;
+			backdrop-filter: blur(10px);
+			padding: 1rem;
+			position: fixed;
+			width: 100%;
+			z-index: 1000;
+			transition: all 0.3s ease;
+		}
+
+		nav {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin: 0rem 1rem 0rem 5rem;
+		}
+
+		nav a {
+			color: var(--text-color);
+			font-size: 1.3rem;
+			font-weight: bold;
+			text-decoration: none;
+			padding: 0.5rem 1rem;
+			margin: 0 0.5rem;
+			border-radius: 25px;
+			transition: all 0.3s ease;
+			position: relative;
+			overflow: hidden;
+		}
+
+		nav a::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: -100%;
+			width: 100%;
+			height: 100%;
+			/* background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent); */
+			transition: all 0.5s ease;
+		}
+
+		nav a:hover {
+			transform: translateY(-3px);
+		}
+
+		.container {
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 6rem 1rem 1rem;
+		}
+
+		.gallery {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+			gap: 1.5rem;
+		}
+
+		.gallery-item {
+			background-color: var(--card-color);
+			border-radius: 15px;
+			overflow: hidden;
+			box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+			transition: all 0.3s ease;
+			transform: perspective(1000px) rotateY(0deg);
+		}
+
+		.gallery-item:hover {
+			transform: perspective(1000px) rotateY(10deg) translateY(-5px);
+			box-shadow: 0 15px 30px rgba(108, 99, 255, 0.3);
+		}
+
+		.gallery-item img {
+			width: 100%;
+			height: 200px;
+			object-fit: cover;
+			transition: all 0.3s ease;
+		}
+
+		.gallery-item:hover img {
+			transform: scale(1.1);
+		}
+
+		.gallery-item .caption {
+			padding: 1rem;
+			text-align: center;
+			font-weight: 300;
+			position: relative;
+			z-index: 1;
+		}
+
+		.gallery-item .caption::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			width: 100%;
+			height: 20px;
+			background: linear-gradient(to bottom, transparent, var(--card-color));
+			z-index: -1;
+		}
+
+		.buttons {
+			display: flex;
+			gap: 1rem;
+		}
+
+		/* From Uiverse.io by Shakil-Babu */
+
+
+		.btn {
+			background-color: rgb(0, 212, 0);
+			padding: 10px 25px;
+			color: #fff;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			cursor: pointer;
+			border-radius: 10px;
+			border: 2px dashed rgb(0, 212, 0);
+			box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+			transition: .4s;
+		}
+
+		.btn span:last-child {
+			display: none;
+		}
+
+		.btn:hover {
+			transition: .4s;
+			border: 2px dashed rgb(0, 212, 0);
+			background-color: #fff;
+			color: rgb(0, 212, 0);
+		}
+
+		#logout {
+			background-color: red;
+			border: 2px dashed red;
+		}
+
+		#logout:hover {
+			transition: .4s;
+			border: 2px dashed red;
+			background-color: #fff;
+			color: red;
+		}
+
+		.heart-icon {
+			cursor: pointer;
+		}
+
+		@media (max-width: 600px) {
+			.gallery {
+				grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<nav>
+			<h1 id="username"></h1>
+			<div>
+				<a href="./myPhotos.html" class="floating">My Photos</a>
+				<a href="#" class="floating">All Photos</a>
+			</div>
+			<div class="buttons">
+				<a href="addPhoto.html">Add Photo</a>
+				<button id="logout-btn" class="btn">Logout</button>
+			</div>
+		</nav>
+	</header>
+	<div class="container">
+		<div class="gallery" id="gallery">
+		</div>
+	</div>
+
+</body>
+
+</html>
