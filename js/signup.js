@@ -5,7 +5,7 @@ function signUp() {
   const password = document.getElementById("password");
 
   axios
-    .post("https://photowebsite-9elu.onrender.com/signup", { // ✅ Updated URL
+    .post("https://photowebsite-9elu.onrender.com/signup", { 
       first_name: firstname.value,
       last_name: lastname.value,
       user_name: username.value,
@@ -13,13 +13,13 @@ function signUp() {
     })
     .then((res) => {
       console.log(res);
-      if (res.status === 201) { // ✅ Simplified condition
+      if (res.status === 201) { 
         window.location.href = "../index.html";
       }
     })
     .catch((err) => {
       const warning = document.getElementById("warning");
-      console.log("Error details:", err); // Debugging log
+      console.log("Error details:", err); 
       const errorMessage = err.response?.data?.message || "Server unreachable. Please try again later!";
       warning.textContent = errorMessage;
       warning.style.display = "block";
