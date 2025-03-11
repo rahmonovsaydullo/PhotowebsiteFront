@@ -19,8 +19,8 @@ function signUp() {
     })
     .catch((err) => {
       const warning = document.getElementById("warning");
-      warning.textContent = err.response?.data?.message || "Signup failed. Try again!";
-      warning.style.display = "block";
+      const errorMessage = err.response && err.response.data ? err.response.data.message : "Signup failed. Try again!";
+      warning.textContent = errorMessage;      
     });
 }
 
