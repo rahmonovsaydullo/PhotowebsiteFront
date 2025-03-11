@@ -2,7 +2,7 @@ const userId = JSON.parse(localStorage.getItem("user")).id;
 
 const gallery = document.querySelector("#gallery");
 axios
-  .get(`http://localhost:4000/photos?userId=${userId}`)
+  .get(`https://photowebsite-9elu.onrender.com/photos?userId=${userId}`) // ✅ Updated URL
   .then((response) => {
     const photos = response.data;
     console.log(photos);
@@ -23,7 +23,7 @@ axios
 
 function toggleLike(photoId, currentLikes) {
   axios
-    .post("http://localhost:4000/like", {
+    .post("https://photowebsite-9elu.onrender.com/like", { // ✅ Updated URL
       photoId,
       userId,
     })
@@ -43,5 +43,4 @@ function toggleLike(photoId, currentLikes) {
 
 document.getElementById('logout-btn').addEventListener('click', () => {
   window.location.href = "../index.html";
-
-})
+});

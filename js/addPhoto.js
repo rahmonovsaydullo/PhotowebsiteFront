@@ -4,7 +4,7 @@ if (userId) {
   function addPhoto() {
     const imageUrl = document.getElementById("imageUrl");
     axios
-      .post(`http://localhost:4000/photos`,
+      .post(`https://photowebsite-9elu.onrender.com/photos`, // Updated backend URL
         {
           url: imageUrl.value,
           userId: userId,
@@ -39,7 +39,6 @@ if (userId) {
   window.location.href = "../index.html";
 }
 
-
 document.getElementById('logout-btn').addEventListener('click', () => {
   window.location.href = "../index.html";
-})
+});

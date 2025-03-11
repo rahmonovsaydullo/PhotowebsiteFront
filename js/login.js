@@ -7,18 +7,22 @@ if (user) {
 function loginUser() {
   const username = document.getElementById("username");
   const password = document.getElementById("password");
+
   axios
-    .post(`http://localhost:4000/login`, {
+    .post(`https://photowebsite-9elu.onrender.com/login`, { // ✅ Updated URL
       user_name: username.value,
       password: password.value,
     })
     .then((res) => {
-
       console.log(res.data);
-      const {user, token} = res.data
-      window.location.href = `./pages/myPhotos.html`;
+      const { user, token } = res.data;
+      
+      // Store user and token
       localStorage.setItem("user", JSON.stringify(user));
       localStorage.setItem("token", token);
+
+      // Redirect to photos page
+      window.location.href = `./pages/myPhotos.html`;
     })
     .catch((err) => {
       document.querySelector(".err").style.display = "block";

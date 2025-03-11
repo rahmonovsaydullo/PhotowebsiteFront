@@ -5,7 +5,7 @@ function signUp() {
   const password = document.getElementById("password");
 
   axios
-    .post("http://localhost:4000/signup", {
+    .post("https://photowebsite-9elu.onrender.com/signup", { // ✅ Updated URL
       first_name: firstname.value,
       last_name: lastname.value,
       user_name: username.value,
@@ -13,14 +13,14 @@ function signUp() {
     })
     .then((res) => {
       console.log(res);
-      if (res.status == 201 && res.statusText == "OK") {
+      if (res.status === 201) { // ✅ Simplified condition
         window.location.href = "../index.html";
       }
     })
     .catch((err) => {
-      document.getElementById("warning").textContent =
-        err.response.data.message;
-      document.getElementById("warning").style.display = "block";
+      const warning = document.getElementById("warning");
+      warning.textContent = err.response?.data?.message || "Signup failed. Try again!";
+      warning.style.display = "block";
     });
 }
 
