@@ -22,7 +22,7 @@ function loginUser() {
       localStorage.setItem("token", token);
 
       // Redirect to photos page
-      window.location.href = `./pages/myPhotos.html`;
+      window.location.href = `../pages/myPhotos.html`;
     })
     .catch((err) => {
       document.querySelector(".err").style.display = "block";
