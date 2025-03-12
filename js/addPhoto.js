@@ -16,13 +16,11 @@ if (userId) {
     formData.append("photo", file);
     formData.append("userId", JSON.parse(localStorage.getItem("user")).id);
     axios
-      .post(`https://photowebsite-9elu.onrender.com/photos`, // Updated backend URL
-        {
-          url: imageUrl,
-          userId: userId,
-        },
+      .post(`https://photowebsite-9elu.onrender.com/photos`,
+        formData,
         {
           headers: {
+            "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${localStorage.getItem('token')}`
           }
         })
