@@ -6,7 +6,8 @@ if (userId) {
 
     const fileInput = document.getElementById("photo")
     const file = fileInput.files[0];
-
+    console.log(fileInput);
+    
     if (!file) {
       alert("Please select a photo");
       return;
@@ -16,7 +17,7 @@ if (userId) {
     formData.append("photo", file);
     formData.append("userId", JSON.parse(localStorage.getItem("user")).id);
     axios
-      .post(`https://photowebsite-9elu.onrender.com/photos`,
+      .post(`http://localhost:4000/photos`, // https://photowebsite-9elu.onrender.com
         formData,
         {
           headers: {

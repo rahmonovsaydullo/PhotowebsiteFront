@@ -2,7 +2,7 @@ const userId = JSON.parse(localStorage.getItem("user")).id;
 
 const gallery = document.querySelector("#gallery");
 axios
-  .get(`https://photowebsite-9elu.onrender.com/photos?userId=${userId}`) // ✅ Updated URL
+  .get(`http://localhost:4000/photos?userId=${userId}`) // ✅ Updated URL
   .then((response) => {
     const photos = response.data;
     console.log(photos);
@@ -23,7 +23,7 @@ axios
 
 function toggleLike(photoId, currentLikes) {
   axios
-    .post("https://photowebsite-9elu.onrender.com/like", { // ✅ Updated URL
+    .post("http://localhost:4000/like", { // ✅ Updated URL
       photoId,
       userId,
     })

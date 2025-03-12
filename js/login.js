@@ -9,7 +9,7 @@ function loginUser() {
   const password = document.getElementById("password");
 
   axios
-    .post(`https://photowebsite-9elu.onrender.com/login`, { // ✅ Updated URL
+    .post(`http://localhost:4000/login`, { // ✅ Updated URL
       user_name: username.value,
       password: password.value.trim(),
     })

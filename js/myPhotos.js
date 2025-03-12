@@ -20,7 +20,7 @@ function redirectToLogin() {
 
 const gallery = document.querySelector("#gallery");
 axios
-  .get(`https://photowebsite-9elu.onrender.com/photos/${user.id}`, { // ✅ Updated URL
+  .get(`http://localhost:4000/photos/${user.id}`, { // ✅ Updated URL
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
@@ -43,7 +43,7 @@ axios
 
 const deleteCard = (id) => {
   axios
-    .delete(`https://photowebsite-9elu.onrender.com/photos/${id}`, // ✅ Updated URL
+    .delete(`http://localhost:4000/photos/${id}`, // ✅ Updated URL
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
