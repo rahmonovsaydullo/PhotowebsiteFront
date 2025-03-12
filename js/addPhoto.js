@@ -18,7 +18,7 @@ if (userId) {
     axios
       .post(`https://photowebsite-9elu.onrender.com/photos`, // Updated backend URL
         {
-          url: imageUrl.value,
+          url: imageUrl,
           userId: userId,
         },
         {
