@@ -20,7 +20,7 @@ function redirectToLogin() {
 
 const gallery = document.querySelector("#gallery");
 axios
-  .get(`http://localhost:4000/photos/${user.id}`, { // ✅ Updated URL
+  .get(`https://photowebsite-9elu.onrender.com/photos/${user.id}`, { // ✅ Updated URL
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
@@ -28,7 +28,7 @@ axios
   .then((response) => {
     const photos = response.data;
     console.log(photos);
-    photos.forEach((photo) => { // ✅ Use forEach instead of map (map is used for returning arrays)
+    photos.forEach((photo) => { 
       gallery.innerHTML += `
         <div class="gallery-item" id="${photo.id}">
           <img src="${photo.url}" alt="Tabiat rasmi">
@@ -43,7 +43,7 @@ axios
 
 const deleteCard = (id) => {
   axios
-    .delete(`http://localhost:4000/photos/${id}`, // ✅ Updated URL
+    .delete(`https://photowebsite-9elu.onrender.com/photos/${id}`, // ✅ Updated URL
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

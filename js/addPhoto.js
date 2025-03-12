@@ -17,7 +17,7 @@ if (userId) {
     formData.append("photo", file);
     formData.append("userId", JSON.parse(localStorage.getItem("user")).id);
     axios
-      .post(`http://localhost:4000/photos`, // https://photowebsite-9elu.onrender.com
+      .post(`https://photowebsite-9elu.onrender.com/photos`, 
         formData,
         {
           headers: {

@@ -19,7 +19,7 @@ function signUp() {
 
   // ✅ Send signup request
   axios
-    .post("http://localhost:4000/signup", { 
+    .post("https://photowebsite-9elu.onrender.com/signup", { 
       first_name: firstname.value.trim(),
       last_name: lastname.value.trim(),
       user_name: username.value.trim(),

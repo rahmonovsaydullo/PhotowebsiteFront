@@ -2,7 +2,7 @@ const userId = JSON.parse(localStorage.getItem("user")).id;
 
 const gallery = document.querySelector("#gallery");
 axios
-  .get(`http://localhost:4000/photos?userId=${userId}`) // ✅ Updated URL
+  .get(`https://photowebsite-9elu.onrender.com/photos?userId=${userId}`) // ✅ Updated URL
   .then((response) => {
     const photos = response.data;
     console.log(photos);
@@ -21,25 +21,28 @@ axios
   })
   .catch((error) => console.log(error));
 
-function toggleLike(photoId, currentLikes) {
-  axios
-    .post("http://localhost:4000/like", { // ✅ Updated URL
-      photoId,
-      userId,
-    })
-    .then((response) => {
-      const likeElement = document.getElementById(`like-${photoId}`);
-
-      if (response.data.liked) {
-        likeElement.innerHTML = `❤️ <span id="like-count-${photoId}">${currentLikes + 1}</span>`;
-      } else {
-        likeElement.innerHTML = `🤍 <span id="like-count-${photoId}">${currentLikes - 1}</span>`;
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
+  function toggleLike(photoId, currentLikes) {
+    axios
+      .post("https://photowebsite-9elu.onrender.com/like", { // ✅ Updated URL
+        photoId,
+        userId,
+      })
+      .then((response) => {
+        const likeElement = document.getElementById(`like-${photoId}`);
+        const likeCountElement = document.getElementById(`like-count-${photoId}`);
+        let likeCount = parseInt(likeCountElement.innerText, 10);
+  
+        if (response.data.liked) {
+          likeElement.innerHTML = `❤️ <span id="like-count-${photoId}">${likeCount + 1}</span>`;
+        } else {
+          likeElement.innerHTML = `🤍 <span id="like-count-${photoId}">${likeCount - 1}</span>`;
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  
 
 document.getElementById('logout-btn').addEventListener('click', () => {
   window.location.href = "../index.html";
