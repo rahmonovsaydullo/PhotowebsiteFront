@@ -3,6 +3,18 @@ const userId = JSON.parse(localStorage.getItem("user")).id;
 if (userId) {
   function addPhoto() {
     const imageUrl = document.getElementById("imageUrl");
+
+    const fileInput = document.getElementById("photo")
+    const file = fileInput.files[0];
+
+    if (!file) {
+      alert("Please select a photo");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("photo", file);
+    formData.append("userId", JSON.parse(localStorage.getItem("user")).id);
     axios
       .post(`https://photowebsite-9elu.onrender.com/photos`, // Updated backend URL
         {

@@ -11,7 +11,7 @@ function loginUser() {
   axios
     .post(`https://photowebsite-9elu.onrender.com/login`, { // ✅ Updated URL
       user_name: username.value,
-      password: password.value,
+      password: password.value.trim(),
     })
     .then((res) => {
       console.log(res.data);
